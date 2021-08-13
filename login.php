@@ -1,4 +1,6 @@
-<?php
+
+
+	<?php
 	include('../config/constant.php');
 ?>
 <html>
@@ -39,8 +41,11 @@
 //check whether the submit button is clicked or not
 	if(isset($_POST['submit'])){
 		//get data from login
-		$username = $_POST['username'];
-		$password = md5($_POST['password']);
+//$username = $_POST['username'];
+		//$password = md5($_POST['password']);
+		$username =mysqli_real_escape_string($conn, $_POST['username']);
+		$raw_password = md5($_POST['password']);
+		$password = mysqli_real_escape_string($conn, $raw_password);
 		//whether the username and password exist or not
 		$sql = "SELECT * FROM tbl_admin WHERE username= '$username' AND password = '$password'";
 		//execute query
